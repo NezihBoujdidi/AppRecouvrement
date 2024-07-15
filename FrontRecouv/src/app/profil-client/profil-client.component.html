@@ -1,0 +1,112 @@
+<div class="container" *ngIf="client">
+    <!-- Top section -->
+    <div class="top-section">
+      <div class="left-section">
+        <h2><strong>{{ client.nom }} {{ client.prenom }}</strong></h2>
+        <h3>Somme due : {{ totalEchues + totalNonEchues }} DT</h3>
+        <div class="status">
+          <div class="status-box">
+            <h4>En Retard</h4>
+            <p>{{ totalEchues }} DT</p>
+          </div>
+          <div class="status-box">
+            <h4>À venir</h4>
+            <p>{{ totalNonEchues }} DT</p>
+          </div>
+        </div>
+        <!-- Client details box -->
+        <div class="client-details-box">
+          <div class="section-title">Client</div>
+          <button class="edit-button">MODIFIER PROFIL</button>
+          <div class="client-info">
+            <div><strong>ID :</strong> {{ client.clientId }}</div>
+            <div><strong>Nom :</strong> {{ client.nom }}</div>
+            <div><strong>Contact :</strong></div>
+            <div><strong>Tel :</strong> {{ client.numTel }}</div>
+            <div><strong>Email :</strong> {{ client.email }}</div>
+            <div><strong>Adresse :</strong> {{ client.adresse }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="right-section">
+        <div class="activity-box">
+          <div class="section-title">Activité</div>
+          <div class="activity-details">
+            <div class="activity-item">
+              <div *ngIf="latestPaiement">
+              <div class="activity-label">Dernier paiement:</div>
+              <div class="activity-value"><strong>Somme:</strong> {{ latestPaiement?.montantPaye }} DT</div>
+              <div class="activity-value"><strong>Date:</strong> {{ latestPaiement?.datePaiement }}</div>
+              <button class="details-button">Voir en détails</button>
+              </div>
+              <div *ngIf="!latestPaiement">
+                <div class="activity-label">Dernier paiement:</div>
+                <div class="activity-value"><strong>Pas de paiements effectués.</strong></div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-label">Prochaine Échéance:</div>
+              <div class="activity-value">{{ daysLeft === null ? 'Aucune prochaine échéance' : 'Dans ' + daysLeft + ' jours' }}</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-label">Dernier contact:</div>
+              <div class="activity-value">Aucun email ou appel téléphonique effectué</div>
+              <button class="action-button">Agir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="client">
+  <div class="section-title">Situation du client</div>
+  <div class="invoice-table">
+    <table>
+      <thead>
+        <tr>
+          <th (click)="sortByFactures('factureID')">FactureID</th>
+          <th (click)="sortByFactures('libelle')">Libellé</th>
+          <th (click)="sortByFactures('dateFacture')">Date</th>
+          <th (click)="sortByFactures('montantNominal')">Montant Nominal</th>
+          <th (click)="sortByFactures('montantOuvert')">Montant Ouvert</th>
+          <th (click)="sortByFactures('dateEcheance')">Date Échéance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let facture of client?.factures">
+          <td>{{ facture.factureID }}</td>
+          <td>{{ facture.libelle }}</td>
+          <td>{{ facture.dateFacture }}</td>
+          <td>{{ facture.montantNominal }} DT</td>
+          <td>{{ facture.montantOuvert }} DT</td>
+          <td>{{ facture.dateEcheance }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container" *ngIf="client">
+<div class="section-title">Paiements effectués</div>
+  <div class="paiement-table">
+    <table>
+      <thead>
+        <tr>
+          <th (click)="sortByPaiements('paiementID')">PaiementID</th>
+          <th (click)="sortByPaiements('libelle')">Libellé</th>
+          <th (click)="sortByPaiements('montantPaye')">Montant Payé</th>
+          <th (click)="sortByPaiements('datePaiement')">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paiement of paiements" (click)="onPaiementRowClick(paiement)"> 
+          <td>{{ paiement.paiementID }}</td>
+          <td>{{ paiement.libelle }}</td>
+          <td>{{ paiement.montantPaye }} DT</td>
+          <td>{{ paiement.datePaiement }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  

@@ -1,0 +1,71 @@
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    max-width: 1500px; /* Increased max-width for the container */
+    
+    padding: 20px;
+    background: #f5f5f5;
+    margin-left: 240px;
+    margin-right: 50px;
+
+  }
+  
+  .container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  table {
+    margin-top: 100px ;
+    width: 100%;
+    max-width: 100%; 
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  thead {
+    background: #ff6347;
+    color: #fff;
+  }
+  
+  thead th {
+    padding: 10px; 
+    text-align: center;
+    cursor: pointer;
+    
+  }
+
+  thead th.empty-header {
+    background: #f5f5f5; 
+    border: none;
+  }
+  
+  .section-header {
+    background: #f5f5f5;
+    border: none; 
+  }
+  
+  .vertical-line {
+    border-right: 2px solid #ddd; 
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+  
+  tbody td {
+    padding: 12px; 
+    text-align: center;
+  }
+  

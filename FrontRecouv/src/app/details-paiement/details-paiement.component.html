@@ -1,0 +1,29 @@
+<div *ngIf="paiement">
+    <div class="container">
+    <h2>Détails du Paiement : {{ paiement.paiementID }}</h2>
+    <div>
+      <p><strong>Libellé:</strong> {{ paiement.libelle }}</p>
+      <p><strong>Montant Payé:</strong> {{ paiement.montantPaye }} DT</p>
+      <p><strong>Date Paiement:</strong> {{ paiement.datePaiement }}</p>
+    </div>
+  
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Montant Payé</th>
+            <th>FactureID</th>
+            <th>Libelle Facture</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let paiementSpecifique of paiementSpecifiques">
+            <td>{{ paiementSpecifique.montantPaye }} DT</td>
+            <td>{{ paiementSpecifique.facture?.factureID }}</td>
+            <td>{{ paiementSpecifique.facture?.libelle }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>

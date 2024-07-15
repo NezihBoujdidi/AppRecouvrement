@@ -1,0 +1,263 @@
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    max-width: 1500px;
+    margin-left: 240px;
+    margin-right: 50px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    height: calc(90vh - 40px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    height: 100%;
+  }
+  
+  .left-section, .right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .left-section {
+    margin-right: 20px;
+  }
+  
+  .right-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin: 0;
+  }
+  
+  h3 {
+    font-size: 22px;
+    color: #ff6347;
+    margin: 10px 0 20px;
+  }
+  
+  .status {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .status-box {
+    background: #e6e5e5;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 35%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .status-box h4 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: #ff6347;
+    font-weight: bold;
+  }
+  
+  .status-box p {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .activity-box {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .activity-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 26px;
+  }
+  
+  .activity-item {
+    margin-bottom: 40px;
+  }
+  
+  .activity-label {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .activity-value {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .details-button, .action-button {
+    margin-right: 20px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .details-button:hover, .action-button:hover {
+    background-color: #e5533d;
+  }
+  
+  .client-details-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .edit-button:hover {
+    background-color: #e5533d;
+  }
+  
+  .client-info {
+    margin-top: 20px;
+  }
+  
+  .client-info div {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .client-info strong {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .invoice-table {
+    margin-top: 20px; /* Adjust margin as needed */
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .invoice-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .invoice-table thead {
+    background: #ff6347;
+    color: #fff;
+  }
+  
+  .invoice-table th, .invoice-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .invoice-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .invoice-table tbody td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+ 
+  .container:first-of-type {
+    margin-bottom: 30px; /* Adjust spacing as needed */
+  }
+
+  .container:not(:first-of-type) {
+    margin-top: 30px; /* Adjust spacing as needed */
+  }
+
+  .paiement-table {
+    margin-top: 20px; /* Adjust margin as needed */
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .paiement-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .paiement-table thead {
+    background: #ff6347;
+    color: #fff;
+  }
+  
+  .paiement-table th,
+  .paiement-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .paiement-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .paiement-table tbody td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  
+  

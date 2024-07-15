@@ -1,0 +1,7 @@
+<div class="app-container">
+    <app-sidebar *ngIf="!ishidden" [isCollapsed]="isCollapsed"></app-sidebar>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+</div>
+  
