@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Client } from '../models/client';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '../services/client.service';
@@ -134,26 +134,12 @@ export class ProfilClientComponent implements OnInit {
     );
   }
 
-  
-    /* sortByFactures(column: string): void {
-      if (this.sortedByFactures === column) {
-        this.sortDirectionFactures = this.sortDirectionFactures === 1 ? -1 : 1;
-      } else {
-        this.sortedByFactures = column;
-        this.sortDirectionFactures = 1;
-      }
-    
-      // Perform sorting
-      this.factures.sort((a, b) => {
-        if (this.sortedByFactures === 'factureID' || this.sortedByFactures === 'montantNominal' || this.sortedByFactures === 'montantOuvert') {
-          return this.sortDirectionFactures * ((a as any)[this.sortedByFactures] - (b as any)[this.sortedByFactures]);
-        } else if (this.sortedByFactures === 'dateFacture' || this.sortedByFactures === 'dateEcheance') {
-          return this.sortDirectionFactures * (new Date(a[this.sortedByFactures]).getTime() - new Date(b[this.sortedByFactures]).getTime());
-        } else {
-          return 0; // No sorting
-        }
-      });
-    } */
+  scrollToPaiementDetails(): void {
+    const section = document.getElementById('paiement-table');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
       sortByFactures(column: string): void {
         if (this.sortedByFactures === column) {
@@ -167,9 +153,9 @@ export class ProfilClientComponent implements OnInit {
         this.factures.sort((a, b) => {
           let aValue, bValue;
           switch (column) {
-            case 'factureID':
-              aValue = a.factureID;
-              bValue = b.factureID;
+            case 'referenceFacture':
+              aValue = a.referenceFacture;
+              bValue = b.referenceFacture;
               break;
             case 'libelle':
               aValue = a.libelle;
@@ -228,5 +214,9 @@ export class ProfilClientComponent implements OnInit {
     }
     onPaiementRowClick(paiement: Paiement): void {
       this.router.navigate(['/payment-details'], { state: { selectedPaiement: paiement } });
+    }
+
+    routeToEditProfil() {
+      this.router.navigate(['/editProfil'], { state: { selectedClient: this.client } });
     }
 }

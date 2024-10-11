@@ -1,8 +1,10 @@
+import { StrategieRelance } from './strategie-relance';
 import { Facture } from "./facture";
 import { Paiement } from "./paiement";
 
 export class Client {
   clientId: number;
+  referenceClient: string;
   nom: string;
   prenom: string;
   adresse: string;
@@ -11,10 +13,13 @@ export class Client {
   factures: Facture[];
   paiements: Paiement[];
   echues: number;      
-  nonEchues: number;   
+  nonEchues: number;  
+  strategieRelance: string; 
+  moyenRelanceActuel : string;
 
   constructor(
     clientId: number,
+    referenceClient: string,
     nom: string,
     prenom: string,
     adresse: string,
@@ -23,8 +28,11 @@ export class Client {
     factures: Facture[] = [],
     paiements: Paiement[] = [],
     echues: number = 0,      
-    nonEchues: number = 0    
+    nonEchues: number = 0,
+    strategieRelance: string, 
+    moyenRelanceActuel : string   
   ) {
+    this.referenceClient= referenceClient;
     this.clientId = clientId;
     this.nom = nom;
     this.prenom = prenom;
@@ -35,5 +43,7 @@ export class Client {
     this.paiements = paiements;
     this.echues = echues;
     this.nonEchues = nonEchues;
+    this.strategieRelance= strategieRelance;
+    this.moyenRelanceActuel= moyenRelanceActuel
   }
 }

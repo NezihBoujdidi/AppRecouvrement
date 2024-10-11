@@ -1,0 +1,9 @@
+Table Clients;;;;;;;;;;;;;;;;
+ReferenceClient;nom;prenom;adresse;email;numTel;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
+Table Factures;;;;;;;;;;;;;;;;
+referenceFacture;libelle;dateFacture;dateEcheance;montantNominal;montantOuvert;ReferenceClient;;;;;;;;;;
+;;JJ/MM/AA;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
+Table Paiements;;;;;;;;;;;;;;;;
+montantPayeTotal;datePaiement;libelle;referenceClient;referenceFacture;montantPaye;;;;;;;;;;;

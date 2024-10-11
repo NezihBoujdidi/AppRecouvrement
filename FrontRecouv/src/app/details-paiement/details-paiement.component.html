@@ -11,16 +11,16 @@
       <table>
         <thead>
           <tr>
-            <th>Montant Payé</th>
-            <th>FactureID</th>
+            <th>Reference Facture</th>
             <th>Libelle Facture</th>
+            <th>Montant Payé</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let paiementSpecifique of paiementSpecifiques">
-            <td>{{ paiementSpecifique.montantPaye }} DT</td>
-            <td>{{ paiementSpecifique.facture?.factureID }}</td>
+            <td>{{ paiementSpecifique.facture?.referenceFacture }}</td>
             <td>{{ paiementSpecifique.facture?.libelle }}</td>
+            <td>{{ paiementSpecifique.montantPaye }} DT</td>
           </tr>
         </tbody>
       </table>

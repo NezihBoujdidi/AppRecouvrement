@@ -1,0 +1,148 @@
+<div class="flex-container">
+  <div class="config-button">
+    <button (click)="navigateToConfigurerRelance()">Configurer les stratégies de relance</button>
+  </div>
+  <h3 class="button-like">Mes Relances</h3>
+</div>
+<ng-template #loading>
+  <div class="loading">
+    Loading data...
+  </div>
+</ng-template>
+<div class="container" *ngIf="dataLoaded; else loading">
+    <div class="relance-list">
+      <div class="search-box">
+        <input type="text" placeholder="Rechercher..." (input)="onSearch($event)" [(ngModel)]="searchTerm">
+        <ul class="dropdown-menu" *ngIf="filteredClients.length > 0">
+            <li *ngFor="let client of filteredClients" (click)="viewClientDetails(client); clearFilteredClients()">
+                {{ client.nom }} {{ client.prenom }}
+            </li>
+        </ul>
+    </div>
+      <div class="client-list">
+        <ul>
+          <li *ngFor="let client of displayedClients" [ngClass]="{'selected-client': selectedClient && selectedClient.clientId === client.clientId}" (click)="viewClientDetails(client)" >
+            <div class="client-info">
+              <h4>{{ client.nom }}</h4>
+              <p>Plan de relance: {{ client.moyenRelanceActuel }}</p>
+            </div>
+            <div class="client-totals">
+              <span class="echue">{{ client.echues }} DT Echue </span>
+              <!-- <span class="non-echue">{{ client.nonEchues }} DT Non Échue</span> -->
+            </div>
+          </li>
+        </ul>
+        <div class="pagination">
+          <button class="pagination-button" (click)="goToPreviousPage()" [disabled]="currentPage === 1">Précédent</button>
+          <button class="pagination-button" (click)="goToNextPage()" [disabled]="currentPage === totalPages">Suivant</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="divider"></div>
+
+    <div class="client-details" *ngIf="selectedClient">
+      <div class="client-name">{{ selectedClient.nom }}</div>
+      <div class="en-cours">En cours</div>
+      <div class="somme">{{ selectedClient.echues + selectedClient.nonEchues }} DT</div>
+      <div class="facture-status">
+        <div class="status-line">
+          <div class="status-line-item">
+            <h4>Echue</h4>
+            <div class="status-line-bar echue-bar" 
+                 [ngStyle]="{ 'width': (selectedClient.echues / (selectedClient.echues + selectedClient.nonEchues) * 100) + '%' }">
+            </div>
+            <p>{{ selectedClient.echues }} DT</p>
+          </div>
+          <div class="status-line-item">
+            <h4>Non Échue</h4>
+            <div class="status-line-bar non-echue-bar" 
+                 [ngStyle]="{ 'width': (selectedClient.nonEchues / (selectedClient.echues + selectedClient.nonEchues) * 100) + '%' }">
+            </div>
+            <p>{{ selectedClient.nonEchues }} DT</p>
+          </div>
+        </div>
+      </div>
+     <!--  <div class="facture-list">
+        <ul>
+          <li *ngFor="let facture of selectedClient.factures" class="facture-item">
+            <div class="facture-info">
+              <h4>Facture: {{ facture.referenceFacture }}</h4>
+              <p>Date Échéance: {{ facture.dateEcheance }}</p>
+              <p>Montant: {{ facture.montantOuvert }} DT</p>
+            </div>
+            <div class="facture-status">
+              <span>{{ facture.status }}</span>
+            </div> 
+          </li>
+        </ul>
+      </div> -->
+      <div class="tabs">
+        <h4 
+          [ngClass]="{'active-tab': activeTab === 'factures'}" 
+          (click)="setActiveTab('factures')">
+          Factures
+        </h4>
+        <h4 
+          [ngClass]="{'active-tab': activeTab === 'commentaires'}" 
+          (click)="setActiveTab('commentaires')">
+          Commentaires
+        </h4>
+      </div>
+      
+      <div class="facture-list" *ngIf="activeTab === 'factures'">
+        <ul>
+          <li *ngFor="let facture of selectedClient.factures" class="facture-item">
+            <div class="facture-info">
+              <h4>Facture: {{ facture.referenceFacture }}</h4>
+              <p>Date Échéance: {{ facture.dateEcheance }}</p>
+              <p>Montant: {{ facture.montantOuvert }} DT</p>
+            </div>
+            <!-- <div class="facture-status">
+              <span>{{ facture.status }}</span>
+            </div>  -->
+          </li>
+        </ul>
+      </div>
+      
+      <div class="commentaire-list" *ngIf="activeTab === 'commentaires'">
+        <!-- <ul>
+          <li *ngFor="let commentaire of selectedClient.commentaires" class="commentaire-item">
+            <div class="commentaire-info">
+              <p>{{ commentaire.text }}</p>
+            </div>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="relancer-client" *ngIf="selectedClient">
+      <label for="relance-plan-select">Plan de relance:</label>
+      <select id="relance-plan-select" [(ngModel)]="selectedMoyen" (change)="onMoyenChange($event)">
+        <option *ngFor="let phase of selectedClientStrategie?.phases" 
+          [ngValue]="phase.moyenRelance" >
+            {{ selectedClient.strategieRelance }} - (J+{{ phase.delai }}) - {{ phase.moyenRelance }}
+        </option>
+      </select>
+      <form class="email-form" *ngIf="selectedMoyen === 'Email'" (ngSubmit)="sendEmail()" #emailForm="ngForm">
+        <div class="form-group">
+          <label for="toEmail">À :</label>
+          <input type="email" id="toEmail" name="toEmail" required [(ngModel)]="email.toEmail" placeholder="Email du destinataire">
+        </div>
+        <div class="form-group">
+          <label for="subject">Objet :</label>
+          <input type="text" id="subject" name="subject" required [(ngModel)]="email.subject" placeholder="Objet de l'email">
+        </div>
+        <div class="form-group">
+          <label for="content">Contenu :</label>
+          <textarea id="content" name="content" required [(ngModel)]="email.content" placeholder="Contenu de l'email"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="attachment">Joindre un fichier :</label>
+          <input type="file" id="attachment" (change)="onFileChange($event)">
+        </div>
+        <button class="send-email-button" type="submit" [disabled]="!emailForm.valid">Envoyer</button>
+      </form>
+    </div>
+</div>

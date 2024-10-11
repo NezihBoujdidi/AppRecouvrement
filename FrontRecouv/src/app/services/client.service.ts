@@ -34,4 +34,8 @@ export class ClientService {
     const url = `${this.apiUrl}/${clientId}`;
     return this.http.delete<void>(url);
   }
+
+  uploadClientCsv(file: FormData, options?: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/upload`, file);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { AppInitService } from './services/app-init.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,10 @@ export class AppComponent implements OnInit {
   isCollapsed: boolean = false;
   ishidden: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, 
+              private authService: AuthService,
+              private appInitService: AppInitService
+            ) {}
 
   ngOnInit(): void {
     this.router.events.subscribe(event => {
@@ -20,6 +24,7 @@ export class AppComponent implements OnInit {
       }
     });
     this.updateActiveState();
+    this.appInitService.initClientsWithRelance();
   }
 
   updateActiveState(): void {

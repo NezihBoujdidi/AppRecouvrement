@@ -1,1 +1,30 @@
-<p>afaire works!</p>
+<h1 class="main-title">Charger vos données!</h1>
+<div class="task-container">
+    <label for="clientFileInput" class="file-client-upload task-button">
+        <img src="assets/client-5253.png" alt="Charger des clients">
+        <input type="file" id="clientFileInput" (change)="onClientFileChanged($event)" style="display: none;">
+        <span class="file-upload-label">Charger des clients</span>
+    </label>
+    <label for="factureFileInput" class="file-facture-upload task-button">
+        <img src="assets/invoice.png" alt="Charger des factures">
+        <input type="file" id="factureFileInput" (change)="onFactureFileChanged($event)" style="display: none;">
+        <span class="file-upload-label">Charger des factures</span>
+    </label>
+    <label for="paiementFileInput" class="file-paiement-upload task-button">
+        <img src="assets/paiement-en-ligne.png" alt="Charger des paiements">
+        <input type="file" id="paiementFileInput" (change)="onPaiementFileChanged($event)" style="display: none;">
+        <span class="file-upload-label">Charger des paiements</span>
+    </label>
+</div>
+<div class="support-info">
+    <p> Type supporté : CSV <img src="assets/csv.png" alt="CSV" class="csv-icon"></p>
+    <p>Comment doit être la structure des fichiers? <a href="assets/exempleDonnées/exemple.pdf" class="example-link" download>Voir un exemple maintenant!</a></p>
+</div>
+<div *ngIf="showPopup" class="popup-container" #uploadResultPopUpContainer>
+    <div class="popup-content" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+      <p [innerHTML]="popupMessage"></p>
+      <button (click)="closePopup()">Fermer</button>
+    </div>
+</div>
+
+

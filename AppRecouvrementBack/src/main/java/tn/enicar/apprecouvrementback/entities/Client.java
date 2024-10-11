@@ -16,11 +16,17 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clientId;
 
+    @Column(unique = true)
+    private String referenceClient;
     private String nom;
     private String prenom;
     private String adresse;
     private String numTel;
     private String email;
+    private String strategieRelance;
+
+    @Enumerated(EnumType.STRING)
+    private MoyenRelance moyenRelanceActuel;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Facture> factures;
@@ -29,7 +35,8 @@ public class Client {
     private List<Paiement> paiements;
 
     // Constructor with fields
-    public Client(String nom, String prenom, String adresse, String numTel, String email) {
+    public Client(String referenceClient, String nom, String prenom, String adresse, String numTel, String email) {
+        this.referenceClient= referenceClient;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;

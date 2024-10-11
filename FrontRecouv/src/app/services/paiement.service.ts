@@ -39,4 +39,8 @@ export class PaiementService {
     const url = `${this.baseUrl}/client/${clientId}`;
     return this.http.get<Paiement[]>(url);
   }
+
+  uploadPaiementCsv(file: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/upload`, file);
+  }
 }
