@@ -1,0 +1,103 @@
+  <h1 class="main-title">Stratégies de relance</h1>
+  <!-- Button to create a new strategy -->
+  <button (click)="addStrategie()" class="btn-new-strategie">+ Nouvelle stratégie</button>
+   
+  <!-- Conditionally display the table if a new strategy is being created -->
+  <div *ngIf="isCreatingStrategie || isEditingStrategie">
+    <table class="strategie-table-create">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Délai après échéance (jours)</th>
+          <th>Moyen de relance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let phase of phases; let i = index">
+          <td>Phase {{ i + 1 }}</td>
+          <td><input type="number" [(ngModel)]="delaiPhases[i]" required /></td>
+          <td>
+            <select [(ngModel)]="selectedMoyens[i]" required>
+              <option *ngFor="let moyen of moyensRelance" [ngValue]="moyen">{{ moyen }}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Name input for the strategy -->
+    <div class="strategie-name-container">
+      <label for="strategieName">Nom de la stratégie :  </label>
+      <input id="strategieName" type="text" [(ngModel)]="strategieNom" required />
+    </div>
+  
+    <!-- Save button -->
+    <button (click)="saveStrategie()" class="btn-save-strategie">Enregistrer</button>
+  </div>
+   <div class="strategie-container">
+     <div *ngFor="let strategie of strategiesRelance">
+      <div class="strategie-header">
+        <h3 class="strategie-name">{{ strategie.nom }}</h3>
+        <div class="button-group">
+          <button (click)="ModifierStrategie(strategie)" class="modifier-button">Modifier</button>
+          <button (click)="SupprimerStrategie(strategie)" class="supprimer-button">Supprimer</button>
+        </div>
+      </div>
+       <table class="strategie-table">
+         <thead>
+           <tr>
+             <th>Phases</th>
+             <th>Délai après échéance (jours)</th>
+             <th>Moyen de relance</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let phase of strategie.phases; let i = index">
+             <td>Phase {{ i + 1 }}</td>
+             <td>{{ phase.delai }} jours</td>
+             <td>{{ phase.moyenRelance }}</td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+   
+   <div class="clients">
+       <h3>Mes Clients</h3>
+       <table>
+         <thead>
+           <tr>
+             <th>Reference Client</th>
+             <th>Nom</th>
+             <th>Prénom</th>
+             <th>Non échues</th>
+             <th>Échues</th>
+             <th>Stratégie de Relance</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let client of clients">
+             <td (click)="viewClientProfile(client)">{{ client.referenceClient }}</td>
+             <td (click)="viewClientProfile(client)">{{ client.nom }}</td>
+             <td (click)="viewClientProfile(client)">{{ client.prenom }}</td>
+             <td (click)="viewClientProfile(client)">{{ client.nonEchues }} DT</td>
+             <td (click)="viewClientProfile(client)">{{ client.echues }} DT</td>
+             <td>
+               <select [(ngModel)]="client.strategieRelance" (change)="onStrategieRelanceChange(client)">
+                 <option *ngFor="let strategie of strategiesRelance" [ngValue]="strategie.nom">
+                   {{ strategie.nom }}
+                 </option>
+               </select>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+   </div>
+   
+   <div *ngIf="showPopup" class="popup-container" #createStrategiePopUpContainer>
+     <div class="popup-content" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+       <p [innerHTML]="popupMessage"></p>
+       <button (click)="closePopup()">Fermer</button>
+     </div>
+   </div>
+   

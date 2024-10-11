@@ -1,0 +1,28 @@
+Action: Upload Clients
+Time: 2024-08-10 12:51:44
+Status: ERROR
+Error Message: A header name is missing in [ReferenceClient, nom, prenom, adresse, ]
+Duration: 1 ms
+Details: Failed upload.
+
+Action: Upload Clients
+Time: 2024-08-11 09:47:53
+Status: ERROR
+Error Message: A header name is missing in [ReferenceClient, nom, prenom, adresse, ]
+Duration: 9 ms
+Details: Failed upload.
+
+Action: Upload Factures
+Time: 2024-08-11 16:59:07
+Status: ERROR
+Error Message: A header name is missing in [referenceFacture, libelle, , dateEcheance, montantNominal, montantOuvert]
+Duration: 15 ms
+Details: Failed upload.
+
+Action: Upload Clients
+Time: 2024-08-11 17:11:37
+Status: ERROR
+Error Message: A header name is missing in [ReferenceClient, nom, prenom, adresse, ]
+Duration: 2 ms
+Details: Failed upload.
+

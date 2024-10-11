@@ -21,6 +21,9 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int factureID;
 
+    @Column(unique = true)
+    private String referenceFacture;
+
     private String libelle;
 
     @Temporal(TemporalType.DATE)
@@ -44,7 +47,8 @@ public class Facture {
 
     // Constructors
 
-    public Facture(String libelle, Date dateFacture, Date dateEcheance, double montantNominal, double montantOuvert, Client client) {
+    public Facture(String referenceFacture, String libelle, Date dateFacture, Date dateEcheance, double montantNominal, double montantOuvert, Client client) {
+        this.referenceFacture= referenceFacture;
         this.libelle = libelle;
         this.dateFacture = dateFacture;
         this.dateEcheance = dateEcheance;

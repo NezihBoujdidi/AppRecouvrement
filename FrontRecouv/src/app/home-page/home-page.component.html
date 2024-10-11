@@ -1,27 +1,29 @@
 <!-- home-page.component.html -->
 <div class="container" *ngIf="dataLoaded; else loading">
     <div class="header">
-      <h2>Total créances</h2>
-      <h3>{{ totalEchues + totalNonEchues }} DT</h3>
+      <h2><strong>Total créances</strong></h2>
+      <h3><strong>{{ totalEchues + totalNonEchues }} DT</strong></h3>
     </div>
-    <div class="status">
-      <div class="status-box">
-        <h4>En Retard</h4>
-        <p>{{ totalEchues }} DT</p>
-      </div>
-      <div class="status-box">
-        <h4>À venir</h4>
-        <p>{{ totalNonEchues }} DT</p>
-      </div>
-    </div>
-    <div class="chart">
-      <canvas id="piechart"></canvas>
-      <div class="chart-info">
-        <div class="chart-item">
-          <span class="color non-echues"></span> Non echues
+    <div class="status-chart-container">
+      <div class="status">
+        <div class="status-box">
+          <h4>En Retard</h4>
+          <p>{{ totalEchues }} DT</p>
         </div>
-        <div class="chart-item">
-          <span class="color echues"></span> Echues
+        <div class="status-box">
+          <h4>À venir</h4>
+          <p>{{ totalNonEchues }} DT</p>
+        </div>
+      </div>
+      <div class="chart">
+        <canvas id="piechart"></canvas>
+        <div class="chart-info">
+          <!-- <div class="chart-item">
+            <span class="color non-echues"></span> Non echues
+          </div>
+          <div class="chart-item">
+            <span class="color echues"></span> Echues
+          </div> -->
         </div>
       </div>
     </div>
@@ -30,7 +32,7 @@
       <table>
         <thead>
           <tr>
-            <th>ClientID</th>
+            <th>Reference Client</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>Non echues</th>
@@ -39,7 +41,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let client of clients" (click)="viewClientProfile(client)">
-            <td>{{ client.clientId }}</td>
+            <td>{{ client.referenceClient }}</td>
             <td>{{ client.nom }}</td>
             <td>{{ client.prenom }}</td>
             <td>{{ client.nonEchues }} DT</td>

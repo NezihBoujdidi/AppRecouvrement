@@ -39,4 +39,8 @@ export class FactureService {
     const url = `${this.baseUrl}/client/${clientId}`; 
     return this.http.get<Facture[]>(url);
   }
+
+  uploadFactureCsv(file: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/upload`, file);
+  }
 }

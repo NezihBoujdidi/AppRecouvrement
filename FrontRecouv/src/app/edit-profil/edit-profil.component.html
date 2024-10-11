@@ -1,0 +1,33 @@
+<div class="edit-container">
+    <h2>Modifier le Profile du client</h2>
+    <form *ngIf="clientToEdit">
+      <div class="form-group">
+        <label for="referenceClient">Reference Client</label>
+        <input type="text" id="referenceClient" [(ngModel)]="clientToEdit.referenceClient" name="referenceClient" disabled>
+      </div>
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" [(ngModel)]="clientToEdit.nom" name="nom">
+      </div>
+      <div class="form-group">
+        <label for="prenom">Prenom</label>
+        <input type="text" id="prenom" [(ngModel)]="clientToEdit.prenom" name="prenom">
+      </div>
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input type="text" id="adresse" [(ngModel)]="clientToEdit.adresse" name="adresse">
+      </div>
+      <div class="form-group">
+        <label for="numTel">NumTel</label>
+        <input type="text" id="numTel" [(ngModel)]="clientToEdit.numTel" name="numTel">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="clientToEdit.email" name="email">
+      </div>
+      <!-- Add more fields as needed -->
+      <button type="button" (click)="updateClient()" [disabled]="isLoading">Enregistrer</button>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </form>
+  </div>
+  

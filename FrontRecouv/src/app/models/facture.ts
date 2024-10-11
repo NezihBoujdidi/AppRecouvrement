@@ -2,6 +2,7 @@ import { Client } from "./client";
 
 export class Facture {
     factureID: number;
+    referenceFacture: string;
   libelle: string;
   dateFacture: Date;
   dateEcheance: Date;
@@ -12,6 +13,7 @@ export class Facture {
 
   constructor(
     factureID: number,
+    referenceFacture: string,
     libelle: string,
     dateFacture: Date,
     dateEcheance: Date,
@@ -20,6 +22,7 @@ export class Facture {
     client: Client
   ) {
     this.factureID = factureID;
+    this.referenceFacture = referenceFacture;
     this.libelle = libelle;
     this.dateFacture = dateFacture;
     this.dateEcheance = dateEcheance;

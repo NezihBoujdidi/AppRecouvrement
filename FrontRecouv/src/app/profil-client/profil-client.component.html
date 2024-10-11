@@ -3,7 +3,7 @@
     <div class="top-section">
       <div class="left-section">
         <h2><strong>{{ client.nom }} {{ client.prenom }}</strong></h2>
-        <h3>Somme due : {{ totalEchues + totalNonEchues }} DT</h3>
+        <h3><strong>Somme due : {{ totalEchues + totalNonEchues }} DT</strong></h3>
         <div class="status">
           <div class="status-box">
             <h4>En Retard</h4>
@@ -17,10 +17,10 @@
         <!-- Client details box -->
         <div class="client-details-box">
           <div class="section-title">Client</div>
-          <button class="edit-button">MODIFIER PROFIL</button>
+          <button class="edit-button" (click)="routeToEditProfil()">MODIFIER PROFIL</button>
           <div class="client-info">
-            <div><strong>ID :</strong> {{ client.clientId }}</div>
-            <div><strong>Nom :</strong> {{ client.nom }}</div>
+            <div><strong>Réference :</strong> {{ client.referenceClient }}</div>
+            <div><strong>Nom :</strong> {{ client.nom }} {{ client.prenom }}</div>
             <div><strong>Contact :</strong></div>
             <div><strong>Tel :</strong> {{ client.numTel }}</div>
             <div><strong>Email :</strong> {{ client.email }}</div>
@@ -37,7 +37,7 @@
               <div class="activity-label">Dernier paiement:</div>
               <div class="activity-value"><strong>Somme:</strong> {{ latestPaiement?.montantPaye }} DT</div>
               <div class="activity-value"><strong>Date:</strong> {{ latestPaiement?.datePaiement }}</div>
-              <button class="details-button">Voir en détails</button>
+              <button class="details-button" (click)="scrollToPaiementDetails()">Voir en détails</button>
               </div>
               <div *ngIf="!latestPaiement">
                 <div class="activity-label">Dernier paiement:</div>
@@ -64,7 +64,7 @@
     <table>
       <thead>
         <tr>
-          <th (click)="sortByFactures('factureID')">FactureID</th>
+          <th (click)="sortByFactures('referenceFacture')">Reference facture</th>
           <th (click)="sortByFactures('libelle')">Libellé</th>
           <th (click)="sortByFactures('dateFacture')">Date</th>
           <th (click)="sortByFactures('montantNominal')">Montant Nominal</th>
@@ -74,7 +74,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let facture of client?.factures">
-          <td>{{ facture.factureID }}</td>
+          <td>{{ facture.referenceFacture }}</td>
           <td>{{ facture.libelle }}</td>
           <td>{{ facture.dateFacture }}</td>
           <td>{{ facture.montantNominal }} DT</td>
@@ -87,7 +87,7 @@
 </div>
 <div class="container" *ngIf="client">
 <div class="section-title">Paiements effectués</div>
-  <div class="paiement-table">
+  <div class="paiement-table" id="paiement-table">
     <table>
       <thead>
         <tr>

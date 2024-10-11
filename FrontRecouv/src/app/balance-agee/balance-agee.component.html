@@ -1,5 +1,10 @@
 <div class="container">
     <h2>Vue Détaillée</h2>
+    <div class="search-box">
+      <input type="text" placeholder="Rechercher par nom ou prénom..." (input)="onSearch($event)">
+    </div>
+    <button (click)="downloadCSV()" class="download-button">Télécharger en CSV</button>
+  
     <table>
       <thead>
         <tr>
@@ -8,30 +13,33 @@
             <th colspan="1" class="vertical-line">Factures non echues</th>
             <th colspan="5" class="vertical-line">Factures echues</th>
             <th colspan="1" class="vertical-line">Total</th>
+            <th colspan="1" class="vertical-line">Total Paiements</th>
         </tr>
         <tr>
-            <th (click)="sortBy('clientId')">Client ID</th>
+            <th (click)="sortBy('referenceClient')">Reference Client</th>
             <th (click)="sortBy('nom')">Nom</th>
             <th (click)="sortBy('nonEchues')">Non Echu</th>
             <th (click)="sortBy('echues_0_30')">0-30jrs</th>
             <th (click)="sortBy('echues_31_60')">31-60jrs</th>
             <th (click)="sortBy('echues_61_90')">61-90jrs</th>
-            <th (click)="sortBy('echues_above_90')">>90jrs</th>
+            <th (click)="sortBy('echues_plusQue_90')">>90jrs</th>
             <th (click)="sortBy('totalEchues')">Total retard</th>
-            <th (click)="sortBy('totalMontantOuvert')">Total en cours</th>
+            <th (click)="sortBy('totalEnCours')">Total en cours</th>
+            <th (click)="sortBy('totalPaiements')">Total Paiements</th> 
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let clientDetail of clientDetails" (click)="viewClientProfile(clientDetail)">
-          <td>{{ clientDetail.clientId }}</td>
+        <tr *ngFor="let clientDetail of filteredClientDetails" (click)="viewClientProfile(clientDetail)">
+          <td>{{ clientDetail.referenceClient }}</td>
           <td>{{ clientDetail.nom }}</td>
           <td>{{ clientDetail.nonEchues }}</td>
           <td>{{ clientDetail.echues_0_30 }}</td>
           <td>{{ clientDetail.echues_31_60 }}</td>
           <td>{{ clientDetail.echues_61_90 }}</td>
-          <td>{{ clientDetail.echues_above_90 }}</td>
+          <td>{{ clientDetail.echues_plusQue_90 }}</td>
           <td>{{ clientDetail.totalEchues }}</td>
-          <td>{{ clientDetail.totalMontantOuvert }}</td>
+          <td>{{ clientDetail.totalEnCours }}</td>
+          <td>{{ clientDetail.totalPaiements }}</td>
         </tr>
       </tbody>
     </table>

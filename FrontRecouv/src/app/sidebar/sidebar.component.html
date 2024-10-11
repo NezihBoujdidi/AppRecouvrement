@@ -1,9 +1,25 @@
+<div class="top-bar">
+    <div class="profile-dropdown">
+      <button class="profile-btn" (click)="toggleProfileMenu()">Profil</button>
+      <ul class="dropdown-menu" *ngIf="isProfileMenuOpen">
+        <li><a (click)="goToProfile()">Mon Profil</a></li>
+        <li><a (click)="logout()">Déconnexion</a></li>
+      </ul>
+    </div>
+  </div>
 <div class="sidebar">
     <div class="search-box">
-        <input type="text" placeholder="Rechercher...">
+        <input type="text" placeholder="Rechercher..." (input)="onSearch($event)">
+        <ul class="dropdown-menu" *ngIf="filteredClients.length > 0">
+            <li *ngFor="let client of filteredClients" (click)="clearFilteredClients()">
+                <a [routerLink]="['/profilClient', client.clientId]">{{ client.nom }} {{ client.prenom }}</a>
+            </li>
+        </ul>
     </div>
     <ul class="menu">
         <li><a routerLink="/home"><i class="icon"></i> Accueil</a></li>
+        <li><a routerLink="/relances"><i class="icon"></i> Relances</a></li>
         <li><a routerLink="/Afaire"><i class="icon"></i> À faire</a></li>
+        
     </ul>
 </div>

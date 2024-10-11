@@ -3,9 +3,12 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import { FactureService } from '../services/facture.service';
 import { Client } from '../models/client';
-import { Chart } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import { lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+Chart.register(...registerables, ChartDataLabels);
 
 @Component({
   selector: 'app-home-page',
@@ -17,7 +20,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   totalEchues: number = 0;
   totalNonEchues: number = 0;
   dataLoaded: boolean = false;
-  
+  chartRendered: boolean = false;
+
   constructor(
     private clientService: ClientService,
     private factureService: FactureService,
@@ -102,27 +106,54 @@ export class HomePageComponent implements OnInit, AfterViewInit {
       this.clients = this.clients.slice(0, 5);
   
       this.dataLoaded = true;
-      this.renderChart();
+      setTimeout(() => {
+        this.renderChart();
+      });
     }
 
-  renderChart(): void {
-    const ctx = document.getElementById('piechart') as HTMLCanvasElement;
-    console.log('Canvas element:', ctx);
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Non echues', 'Echues'],
-        datasets: [{
-          data: [this.totalNonEchues, this.totalEchues],
-          backgroundColor: ['#ff6347', '#ffa07a'],
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
+    renderChart(): void {
+      const ctx = document.getElementById('piechart') as HTMLCanvasElement;
+      console.log('Canvas element:', ctx);
+  
+      if (!ctx) {
+        console.error('Canvas element not found!');
+        return;
       }
-    });
-  }
+  
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Non echues', 'Echues'],
+          datasets: [{
+            data: [this.totalNonEchues, this.totalEchues],
+            backgroundColor: ['#B43F3F', '#507687'],
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins:{
+            datalabels: {
+              color: '#fff',
+              display: true,
+              formatter: (value: number, context: any) => {
+                const total = context.dataset.data.reduce((acc: number, val: number) => acc + val, 0);
+                const percentage = (value / total * 100).toFixed(2);
+                return `${percentage}%`;
+              },
+              font: {
+                weight: 'bold',
+                size:18
+              },
+              anchor: 'end',
+              align: 'start'
+            }
+          }
+        }
+      });
+  
+      this.chartRendered = true;
+    }
 
   viewDetails() : void {
     this.router.navigate(['/balanceAgee']);
