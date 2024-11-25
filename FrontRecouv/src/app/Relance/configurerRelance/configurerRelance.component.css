@@ -28,7 +28,7 @@
     margin-bottom: 15px;
     padding: 7px 15px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #173B45;
     color: white;
     border: none;
     border-radius: 5px;
@@ -52,7 +52,7 @@
   }
   
   .btn-new-strategie:hover {
-    background-color: #0056b3;
+    background-color: #173B45;
   }
   
   .strategie-table-create {
@@ -131,7 +131,7 @@
   }
   
   thead {
-    background: #ff6347;
+    background: #B43F3F;
     color: #fff;
   }
   
@@ -179,7 +179,7 @@
 }
 
 .popup-content.error {
-    border: 2px solid #f44336;
+    border: 2px solid #B43F3F;
 }
 
 .popup-content p {
@@ -188,7 +188,7 @@
 }
 
 .popup-content button {
-    background-color: #007bff;
+    background-color: #173B45;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -199,6 +199,6 @@
 }
 
 .popup-content button:hover {
-    background-color: #0056b3;
+    background-color: #173B45;
 }
   

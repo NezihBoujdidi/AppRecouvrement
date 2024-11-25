@@ -1,11 +1,15 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="top-bar">
-    <div class="profile-dropdown">
-      <button class="profile-btn" (click)="toggleProfileMenu()">Profil</button>
-      <ul class="dropdown-menu" *ngIf="isProfileMenuOpen">
-        <li><a (click)="goToProfile()">Mon Profil</a></li>
-        <li><a (click)="logout()">Déconnexion</a></li>
-      </ul>
-    </div>
+  <div class="bnjr">
+    <p>Bonjour Nezih!</p>
+  </div>
+  <div class="profile-dropdown">
+    <button class="profile-btn" (click)="toggleProfileMenu()">Profil</button>
+    <ul class="dropdown-menu" *ngIf="isProfileMenuOpen">
+      <li><a (click)="goToProfile()">Mon Profil</a></li>
+      <li><a (click)="logout()">Déconnexion</a></li>
+    </ul>
+  </div>
   </div>
 <div class="sidebar">
     <div class="search-box">
@@ -17,9 +21,9 @@
         </ul>
     </div>
     <ul class="menu">
-        <li><a routerLink="/home"><i class="icon"></i> Accueil</a></li>
-        <li><a routerLink="/relances"><i class="icon"></i> Relances</a></li>
-        <li><a routerLink="/Afaire"><i class="icon"></i> À faire</a></li>
+        <li><a routerLink="/home"><i class="material-icons icon">home</i> Accueil</a></li>
+        <li><a routerLink="/relances"><i class="material-icons icon">notifications</i> Relances</a></li>
+        <li><a routerLink="/Afaire"><i class="material-icons icon">file_upload</i> À faire</a></li>
         
     </ul>
 </div>
