@@ -80,6 +80,19 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+select {
+    /* Reset Select */
+    outline: 10px #173B45;
+    border: 0;
+    box-shadow: none;
+    /* Personalize */
+    flex: 1;
+    padding: 0 1em;
+    background-color: var(--darkgray);
+    background-image: none;
+    cursor: pointer;
+  }
+
 .client-info h4 {
     margin: 0;
     font-size: 18px;
@@ -110,7 +123,7 @@
     align-self: stretch;
     height: auto; /* Full height of the parent */
     background-color: #F8EDED; /* Line color */
-    margin: 0 10px; /* Space between containers */
+    margin: 0 0px; /* Space between containers */
   }
 
 .client-details {
@@ -340,14 +353,24 @@
     transition: border-bottom 0.3s;
   }
 
+  .relancer-client{
+    margin-left: 15px ;
+  }
+  
+
   .relancer-client form {
     background: #F8EDED;
-    width: 115%;
+    width: 100%;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     
+    
 }
+.plan-de-relance {
+    margin-bottom: 50px;
+}
+
 .email-form {
     max-width: 600px; /* Set a max width for the form */
     margin: auto; /* Center the form */

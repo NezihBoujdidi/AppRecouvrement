@@ -118,13 +118,14 @@
 
     <div class="divider"></div>
     <div class="relancer-client" *ngIf="selectedClient">
-      <label for="relance-plan-select">Plan de relance:</label>
-      <select id="relance-plan-select" [(ngModel)]="selectedMoyen" (change)="onMoyenChange($event)">
-        <option *ngFor="let phase of selectedClientStrategie?.phases" 
-          [ngValue]="phase.moyenRelance" >
+      <div class="plan-de-relance">
+        <label for="relance-plan-select">Plan de relance:</label>
+        <select id="relance-plan-select" [(ngModel)]="selectedMoyen" (change)="onMoyenChange($event)">
+          <option *ngFor="let phase of selectedClientStrategie?.phases" [ngValue]="phase.moyenRelance">
             {{ selectedClient.strategieRelance }} - (J+{{ phase.delai }}) - {{ phase.moyenRelance }}
-        </option>
-      </select>
+          </option>
+        </select>
+      </div>
       <form class="email-form" *ngIf="selectedMoyen === 'Email'" (ngSubmit)="sendEmail()" #emailForm="ngForm">
         <div class="form-group">
           <label for="toEmail">À :</label>
